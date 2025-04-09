@@ -1,0 +1,381 @@
+services:
+  auth_service:
+    build: ./microservices/auth_service
+    volumes:
+      - ./microservices/auth_service:/app
+    ports:
+      - "8001:8000"
+    depends_on:
+      - auth_db
+    environment:
+      - DATABASE_URL=postgres://user:password@auth_db:5432/auth_db
+    networks:
+      - booking_net
+
+  booking_service:
+    build: ./microservices/booking_service
+    volumes:
+      - ./microservices/booking_service:/app
+    ports:
+      - "8002:8000"
+    depends_on:
+      - booking_db
+    environment:
+      - DATABASE_URL=postgres://user:password@booking_db:5432/booking_db
+    networks:
+      - booking_net
+
+  comment_service:
+    build: ./microservices/comment_service
+    volumes:
+      - ./microservices/comment_service:/app
+    ports:
+      - "8003:8000"
+    depends_on:
+      - comment_db
+    environment:
+      - DATABASE_URL=postgres://user:password@comment_db:5432/comment_db
+    networks:
+      - booking_net
+
+  hotel_service:
+    build: ./microservices/hotel_service
+    volumes:
+      - ./microservices/hotel_service:/app
+    ports:
+      - "8004:8000"
+    depends_on:
+      - hotel_db
+    environment:
+      - DATABASE_URL=postgres://user:password@hotel_db:5432/hotel_db
+    networks:
+      - booking_net
+
+  notification_service:
+    build: ./microservices/notification_service
+    volumes:
+      - ./microservices/notification_service:/app
+    ports:
+      - "8005:8000"
+    depends_on:
+      - notification_db
+    environment:
+      - DATABASE_URL=postgres://user:password@notification_db:5432/notification_db
+    networks:
+      - booking_net
+
+  payment_service:
+    build: ./microservices/payment_service
+    volumes:
+      - ./microservices/payment_service:/app
+    ports:
+      - "8006:8000"
+    depends_on:
+      - payment_db
+    environment:
+      - DATABASE_URL=postgres://user:password@payment_db:5432/payment_db
+    networks:
+      - booking_net
+
+  user_service:
+    build: ./microservices/user_service
+    volumes:
+      - ./microservices/user_service:/app
+    ports:
+      - "8007:8000"
+    depends_on:
+      - user_db
+    environment:
+      - DATABASE_URL=postgres://user:password@user_db:5432/user_db
+    networks:
+      - booking_net
+
+  auth_db:
+    image: postgres:13
+    restart: always
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: auth_db
+    volumes:
+      - auth_db_data:/var/lib/postgresql/data
+    networks:
+      - booking_net
+
+  booking_db:
+    image: postgres:13
+    restart: always
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: booking_db
+    volumes:
+      - booking_db_data:/var/lib/postgresql/data
+    networks:
+      - booking_net
+
+  comment_db:
+    image: postgres:13
+    restart: always
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: comment_db
+    volumes:
+      - comment_db_data:/var/lib/postgresql/data
+    networks:
+      - booking_net
+
+  hotel_db:
+    image: postgres:13
+    restart: always
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: hotel_db
+    volumes:
+      - hotel_db_data:/var/lib/postgresql/data
+    networks:
+      - booking_net
+
+  notification_db:
+    image: postgres:13
+    restart: always
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: notification_db
+    volumes:
+      - notification_db_data:/var/lib/postgresql/data
+    networks:
+      - booking_net
+
+  payment_db:
+    image: postgres:13
+    restart: always
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: payment_db
+    volumes:
+      - payment_db_data:/var/lib/postgresql/data
+    networks:
+      - booking_net
+
+  user_db:
+    image: postgres:13
+    restart: always
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: user_db
+    volumes:
+      - user_db_data:/var/lib/postgresql/data
+    networks:
+      - booking_net
+
+volumes:
+  auth_db_data:
+  booking_db_data:
+  comment_db_data:
+  hotel_db_data:
+  notification_db_data:
+  payment_db_data:
+  user_db_data:
+
+networks:
+  booking_net:
+
+
+
+
+# services:
+#   auth_service:
+#     volumes:
+#       - ./microservices/auth_service:/app
+
+#     build: ./microservices/auth_service
+#     ports:
+#       - "8001:8000"
+#     depends_on:
+#       - auth_db
+#     environment:
+#       - DATABASE_URL=postgres://user:password@auth_db:5432/auth_db
+#     networks:
+#       - booking_net
+
+#   booking_service:
+#     build: ./microservices/booking_service
+#     ports:
+#       - "8002:8000"
+#     depends_on:
+#       - booking_db
+#     environment:
+#       - DATABASE_URL=postgres://user:password@booking_db:5432/booking_db
+#     networks:
+#       - booking_net
+
+#   comment_service:
+#     build: ./microservices/comment_service
+#     ports:
+#       - "8003:8000"
+#     depends_on:
+#       - comment_db
+#     environment:
+#       - DATABASE_URL=postgres://user:password@comment_db:5432/comment_db
+#     networks:
+#       - booking_net
+
+#   hotel_service:
+#     build: ./microservices/hotel_service
+#     ports:
+#       - "8004:8000"
+#     depends_on:
+#       - hotel_db
+#     environment:
+#       - DATABASE_URL=postgres://user:password@hotel_db:5432/hotel_db
+#     networks:
+#       - booking_net
+
+#   notification_service:
+#     build: ./microservices/notification_service
+#     ports:
+#       - "8005:8000"
+#     depends_on:
+#       - notification_db
+#     environment:
+#       - DATABASE_URL=postgres://user:password@notification_db:5432/notification_db
+#     networks:
+#       - booking_net
+
+#   payment_service:
+#     build: ./microservices/payment_service
+#     ports:
+#       - "8006:8000"
+#     depends_on:
+#       - payment_db
+#     environment:
+#       - DATABASE_URL=postgres://user:password@payment_db:5432/payment_db
+#     networks:
+#       - booking_net
+
+#   user_service:
+#     build: ./microservices/user_service
+#     ports:
+#       - "8007:8000"
+#     depends_on:
+#       - user_db
+#     environment:
+#       - DATABASE_URL=postgres://user:password@user_db:5432/user_db
+#     networks:
+#       - booking_net
+
+#   user_db:
+#     image: postgres:13
+#     restart: always
+#     environment:
+#       POSTGRES_USER: user
+#       POSTGRES_PASSWORD: password
+#       POSTGRES_DB: user_db
+#     ports:
+#       - "5432:5432"
+#     volumes:
+#       - user_db_data:/var/lib/postgresql/data  # Persist database data
+#     networks:
+#       - booking_net
+
+#   notification_db:
+#     image: postgres:13
+#     restart: always
+#     environment:
+#       POSTGRES_USER: user
+#       POSTGRES_PASSWORD: password
+#       POSTGRES_DB: notification_db
+#     ports:
+#       - "5435:5432"
+#     volumes:
+#       - notification_db_data:/var/lib/postgresql/data  # Persist database data
+#     networks:
+#       - booking_net
+
+#   auth_db:
+#     image: postgres:13
+#     restart: always
+#     environment:
+#       POSTGRES_USER: user
+#       POSTGRES_PASSWORD: password
+#       POSTGRES_DB: auth_db
+#     ports:
+#       - "5436:5432"
+#     volumes:
+#       - auth_db_data:/var/lib/postgresql/data  # Persist database data
+#     networks:
+#       - booking_net
+
+#   booking_db:
+#     image: postgres:13
+#     restart: always
+#     environment:
+#       POSTGRES_USER: user
+#       POSTGRES_PASSWORD: password
+#       POSTGRES_DB: booking_db
+#     ports:
+#       - "5437:5432"
+#     volumes:
+#       - booking_db_data:/var/lib/postgresql/data  # Persist database data
+#     networks:
+#       - booking_net
+
+#   comment_db:
+#     image: postgres:13
+#     restart: always
+#     environment:
+#       POSTGRES_USER: user
+#       POSTGRES_PASSWORD: password
+#       POSTGRES_DB: comment_db
+#     ports:
+#       - "5438:5432"
+#     volumes:
+#       - comment_db_data:/var/lib/postgresql/data  # Persist database data
+#     networks:
+#       - booking_net
+
+#   hotel_db:
+#     image: postgres:13
+#     restart: always
+#     environment:
+#       POSTGRES_USER: user
+#       POSTGRES_PASSWORD: password
+#       POSTGRES_DB: hotel_db
+#     ports:
+#       - "5439:5432"
+#     volumes:
+#       - hotel_db_data:/var/lib/postgresql/data  # Persist database data
+#     networks:
+#       - booking_net
+
+#   payment_db:
+#     image: postgres:13
+#     restart: always
+#     environment:
+#       POSTGRES_USER: user
+#       POSTGRES_PASSWORD: password
+#       POSTGRES_DB: payment_db
+#     ports:
+#       - "5440:5432"
+#     volumes:
+#       - payment_db_data:/var/lib/postgresql/data  # Persist database data
+#     networks:
+#       - booking_net
+
+# volumes:
+#   user_db_data:  # Named volume for user_db
+#   notification_db_data:  # Named volume for notification_db
+#   auth_db_data:  # Named volume for auth_db
+#   booking_db_data:  # Named volume for booking_db
+#   comment_db_data:  # Named volume for comment_db
+#   hotel_db_data:  # Named volume for hotel_db
+#   payment_db_data:  # Named volume for payment_db
+
+# networks:
+#   booking_net:  # Custom network for all services
