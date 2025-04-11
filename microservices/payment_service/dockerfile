@@ -21,3 +21,4 @@ EXPOSE 8005
 
 # Start Django server (you may customize this later for Gunicorn/Uvicorn)
 #CMD ["python", "manage.py", "runserver", "0.0.0.0:8005"]
+CMD ["tail", "-f", "/dev/null"]

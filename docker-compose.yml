@@ -2,7 +2,7 @@ services:
   auth_service:
     build: ./microservices/auth_service
     volumes:
-      - ./microservices/auth_service:/app
+      - ./microservices/auth_service:/auth_service
     ports:
       - "8001:8000"
     depends_on:
@@ -15,7 +15,7 @@ services:
   booking_service:
     build: ./microservices/booking_service
     volumes:
-      - ./microservices/booking_service:/app
+      - ./microservices/booking_service:/booking_service
     ports:
       - "8002:8000"
     depends_on:
@@ -28,7 +28,7 @@ services:
   comment_service:
     build: ./microservices/comment_service
     volumes:
-      - ./microservices/comment_service:/app
+      - ./microservices/comment_service:/comment_service
     ports:
       - "8003:8000"
     depends_on:
@@ -41,7 +41,7 @@ services:
   hotel_service:
     build: ./microservices/hotel_service
     volumes:
-      - ./microservices/hotel_service:/app
+      - ./microservices/hotel_service:/hotel_service
     ports:
       - "8004:8000"
     depends_on:
@@ -54,7 +54,7 @@ services:
   notification_service:
     build: ./microservices/notification_service
     volumes:
-      - ./microservices/notification_service:/app
+      - ./microservices/notification_service:/notification_service
     ports:
       - "8005:8000"
     depends_on:
@@ -67,7 +67,7 @@ services:
   payment_service:
     build: ./microservices/payment_service
     volumes:
-      - ./microservices/payment_service:/app
+      - ./microservices/payment_service:/payment_service
     ports:
       - "8006:8000"
     depends_on:
@@ -80,7 +80,7 @@ services:
   user_service:
     build: ./microservices/user_service
     volumes:
-      - ./microservices/user_service:/app
+      - ./microservices/user_service:/user_service
     ports:
       - "8007:8000"
     depends_on:

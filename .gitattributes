@@ -1,0 +1,33 @@
+# Normaliza todos los archivos de texto
+* text=auto
+
+# Fuerza saltos de línea LF para todos los archivos Python
+*.py text eol=lf
+
+# Archivos de configuración que también deberían usar LF
+*.sh text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.env text eol=lf
+*.Dockerfile text eol=lf
+docker-compose.* text eol=lf
+
+# Markdown y archivos comunes
+*.md text eol=lf
+*.txt text eol=lf
+*.json text eol=lf
+*.html text eol=lf
+*.css text eol=lf
+*.js text eol=lf
+
+# Evita que Git normalice archivos binarios
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pdf binary
+*.zip binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
