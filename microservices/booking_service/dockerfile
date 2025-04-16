@@ -1,5 +1,5 @@
 # Use official Python base image
-FROM python:3.13-slim
+FROM python:3.12-slim
 
 # Actualizamos los repositorios e instalamos las dependencias del sistema necesarias
 RUN apt-get update && apt-get install -y libpq-dev gcc
@@ -20,5 +20,5 @@ COPY . .
 EXPOSE 8001
 
 # Start the Django development server
-#CMD ["python", "manage.py", "runserver", "0.0.0.0:8001"]
-CMD ["tail", "-f", "/dev/null"]
+CMD ["python", "src/manage.py", "runserver", "0.0.0.0:8001"]
+#CMD ["tail", "-f", "/dev/null"]
