@@ -3,6 +3,7 @@ services:
     build: ./microservices/auth_service
     volumes:
       - ./microservices/auth_service:/auth_service
+      - ./microservices/auth_service/media:/auth_service/media
     ports:
       - "8001:8000"
     depends_on:
@@ -16,6 +17,7 @@ services:
     build: ./microservices/booking_service
     volumes:
       - ./microservices/booking_service:/booking_service
+      - ./microservices/booking_service/media:/booking_service/media
     ports:
       - "8002:8000"
     depends_on:
@@ -29,6 +31,7 @@ services:
     build: ./microservices/comment_service
     volumes:
       - ./microservices/comment_service:/comment_service
+      - ./microservices/comment_service/media:/comment_service/media
     ports:
       - "8003:8000"
     depends_on:
@@ -42,6 +45,7 @@ services:
     build: ./microservices/hotel_service
     volumes:
       - ./microservices/hotel_service:/hotel_service
+      - ./microservices/hotel_service/media:/hotel_service/media
     ports:
       - "8004:8000"
     depends_on:
@@ -55,6 +59,7 @@ services:
     build: ./microservices/notification_service
     volumes:
       - ./microservices/notification_service:/notification_service
+      - ./microservices/notification_service/media:/notification_service/media
     ports:
       - "8005:8000"
     depends_on:
@@ -68,6 +73,7 @@ services:
     build: ./microservices/payment_service
     volumes:
       - ./microservices/payment_service:/payment_service
+      - ./microservices/payment_service/media:/payment_service/media
     ports:
       - "8006:8000"
     depends_on:
@@ -81,6 +87,7 @@ services:
     build: ./microservices/user_service
     volumes:
       - ./microservices/user_service:/user_service
+      - ./microservices/user_service/media:/user_service/media
     ports:
       - "8007:8000"
     depends_on:
