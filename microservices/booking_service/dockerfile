@@ -20,5 +20,5 @@ COPY . .
 EXPOSE 8001
 
 # Start the Django development server
-CMD ["python", "src/manage.py", "runserver", "0.0.0.0:8001"]
+CMD ["python", "src/manage.py", "runserver", "0.0.0.0:8000"]
 #CMD ["tail", "-f", "/dev/null"]

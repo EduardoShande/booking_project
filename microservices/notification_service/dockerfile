@@ -20,5 +20,5 @@ COPY . .
 EXPOSE 8004
 
 # Start Django server (you may customize this later for Gunicorn/Uvicorn)
-CMD ["python", "src/manage.py", "runserver", "0.0.0.0:8004"]
+CMD ["python", "src/manage.py", "runserver", "0.0.0.0:8000"]
 #CMD ["tail", "-f", "/dev/null"]
